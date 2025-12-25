@@ -1,0 +1,14 @@
+{
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.parameterHints.enabled": true,
+  "C_Cpp.autocomplete": "disabled",
+  "javascript.suggest.enabled": true,
+  "tailwindCSS.suggestions": true,
+  "html.suggest.hideEndTagSuggestions": true
+}

@@ -1,0 +1,134 @@
+Backend configuration
+1.npm init -y
+
+2.to update npm version
+npm install -g npm@11.6.2
+
+3.Installing required packages
+npm i express dotenv mongoose jsonwebtoken bcrypt
+
+4.Installing nodemon
+npm i -D nodemon
+
+5.Make changes
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+
+    "type": "module",
+
+6.port setup in index.js
+import express from 'express';
+
+const app = express();
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
+
+7.dotenv set up -Create file in backend and define PORT=5000
+import dotenv from 'dotenv';
+dotenv.config();
+
+8.Database connection
+Create folder config under backend and create db.js file
+
+i) index.js file
+import connectDB from './config/db.js';
+await connectDB();
+
+ii)db.js
+import mongoose from "mongoose";
+
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI,{
+        dbName: "MERNAuthentication",
+    });
+
+    console.log("MongoDB connected successfully");
+  } catch (error) {
+    console.error("Error connecting to the database:", error);
+  }
+};
+
+export default connectDB;
+
+.env file
+create project and paste MONGO_URI
+
+
+used mongoose sanitize package
+
+9) zod is a library used for validation same like joi
+
+10) we are using REDIS
+Redis is basically a super-fast, in-memory temporary database that you use when you need SPEED and LOW LATENCY.
+
+Think of Redis like this:
+
+👉 Your main database (MongoDB/PostgreSQL) = long-term storage
+👉 Redis = your app’s high-speed scratchpad / cache / session store
+
+Redis does NOT replace MongoDB.
+Redis BOOSTS MongoDB.
+
+⚡ WHY REDIS IS SO FAST
+
+Because unlike MongoDB/Postgres, Redis stores data in RAM, not disk.
+
+RAM = microseconds
+Disk = milliseconds
+
+That speed difference matters A LOT.
+
+🚀 WHAT REDIS IS USED FOR (REAL-WORLD USE CASES)
+1️⃣ Caching (the most common use)
+
+Example:
+Your backend hits a slow API (weather, exchange rates).
+Instead of fetching every time → Redis stores the last result.
+→ Your app becomes 10–50× faster.
+
+2️⃣ Rate Limiting
+Protect API from spam or too many requests.
+Example logic:
+Allow 100 requests per user per 1 minute
+Use Redis counters to track user requests
+
+3️⃣ Session Store (Instead of storing sessions in DB)
+If you use login sessions (not JWT), Redis is perfect.
+
+4️⃣ Storing OTPs / Tokens / Temporary Data
+Redis is ideal for:
+OTP logins
+Password-reset token
+Email verification codes
+Because data expires automatically.
+
+5️⃣ Queues / Background Jobs
+Redis is used with BullMQ or Celery for:
+Sending emails
+Processing videos
+Running heavy tasks in background
+
+stpes:
+a) Go to upstash.com create account create database and Language Pick a language to get started Javascript and click on "ioredis"
+b)  Cpoy paste usrl of redis into .env file
+c) import in index.js file
+
+
+send email
+go to google acc alow two step authentication
+search app password ->click on search tab -> select security in dropdown
+give password-> give app name(Authentication) ->Create
+SMTP_PASSWORD=Paste the password and remove spaces
+SMTP_USER=email on which currently logged in
+
+
+npm i cookie-parser

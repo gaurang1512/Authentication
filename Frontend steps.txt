@@ -1,0 +1,18 @@
+1.create vite app
+npm create vite@latest
+
+2. Install tailwind css
+
+3.Install react router dom 
+npm i react-router-dom
+
+4.Install axois
+npm i axios
+
+5.install tostify
+npm install --save react-toastify
+
+
+Api interceptor 
+if access token gets expire then it will intercept with api and fetch refresh token 
+so that we get a new access token so that we can access our cookie
